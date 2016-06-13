@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="HNGBlog" ng-controller="BaseController">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Web development tutorials, tips and tricks from the development team at Hotels.ng">
-    <title>HNG.tech Developer Blog</title>
+    <title>{{title}} - HNG.tech</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/blog.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -137,6 +137,13 @@
     <!-- Load Scripts -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/angularjs/1.5.5/angular.js"></script>
     <script src="/assets/js/blog.min.js"></script>
+
+    <script src="/assets/js/app.module.js"></script>
+    <script src="/assets/js/shared/shared.module.js"></script>
+    <script src="/assets/js/posts/posts.module.js"></script>
+
+    <script src="/assets/js/shared/base.controller.js"></script>
 </body>
 </html>
