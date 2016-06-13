@@ -19,6 +19,11 @@
 				url: "/",
 				controller: "PostsController",
 				templateUrl: "templates/posts.html"
+			})
+			.state('post', {
+				url: '/post/{id}',
+				controller: "PostController",
+				templateUrl: "templates/post.html"
 			});
 	}]);
 

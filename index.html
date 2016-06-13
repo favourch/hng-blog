@@ -49,7 +49,7 @@
     </nav>
 
     <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
+
     <header class="intro-header" style="background-image: url('/assets/img/header.jpg')">
         <div class="container">
             <div class="row">
@@ -68,28 +68,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!--div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                    </a>
-                    <p class="post-meta">Posted by Simeon on September 24, 2015</p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2>
-                    </a>
-                    <p class="post-meta">Posted by Usman on September 18, 2015</p>
-                </div>
-                <hr>
-                <ul class="pager">
-                    <li class="prev pull-left">
-                        <a href="#">&larr; Older Posts</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer Posts &rarr;</a>
-                    </li>
-                </ul-->
+                <ui-view></ui-view>
             </div>
         </div>
     </div>
@@ -97,41 +76,7 @@
     <hr>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; HNG.tech 2016</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer ng-include="'templates/partials/footer.html'"></footer>
 
     <!-- Load Scripts -->
     <script src="/assets/js/jquery.min.js"></script>
@@ -144,6 +89,9 @@
     <script src="/assets/js/shared/shared.module.js"></script>
     <script src="/assets/js/posts/posts.module.js"></script>
 
+    <script src="/assets/js/posts/posts.service.js"></script>
+
     <script src="/assets/js/shared/base.controller.js"></script>
+    <script src="/assets/js/posts/posts.controller.js"></script>
 </body>
 </html>

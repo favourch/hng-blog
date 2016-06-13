@@ -1,13 +1,26 @@
 (function () {
 	'use strict';
-	var PostsController;
+	var PostController, PostsController;
 
-	PostsController = function ($scope) {
+	PostsController = function ($scope, Posts) {
 		$scope.posts = false;
+
+		Posts.getAllPosts().then( function (data) {
+			$scope.posts = data;
+		});
 	};
 
-	PostsController.$inject = ['$scope'];
+	PostController = function ($scope) {
+		// $scope.$parent.title = "This is a sample post";
+		// Stub
+	};
 
-	angular.module('HNGBlog.posts').controller('PostsController', PostsController);
+	PostController.$inject  = ['$scope'];
+	PostsController.$inject = ['$scope', 'PostsService'];
+
+	angular.module('HNGBlog.posts').controller({
+		"PostController":  PostController,
+		"PostsController": PostsController,
+	});
 
 }());
