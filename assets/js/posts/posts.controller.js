@@ -2,22 +2,36 @@
 	'use strict';
 	var PostController, PostsController;
 
-	PostsController = function ($scope, Posts) {
-		$scope.posts = false;
+	/**
+	 * Post Controller - Displays a single post.
+	 *
+	 * @param  {Object} $scope
+	 * @param  {Object} post
+	 * @return {void}
+	 */
+	PostController = ['$scope', 'post', function ($scope, post) {
+		$scope.post = post;
+		$scope.$parent.post  = post;
+	}];
 
-		Posts.getAllPosts().then( function (data) {
+	/**
+	 * Posts controller - Displays posts.
+	 *
+	 * @param  {Object} $scope
+	 * @param  {Object} Posts
+	 * @return {void}
+	 */
+	PostsController = ['$scope', 'PostsService', function ($scope, Posts) {
+		$scope.posts = false;
+		$scope.$parent.post = false;
+
+		Posts.paginated(function (data) {
 			$scope.posts = data;
 		});
-	};
+	}];
 
-	PostController = function ($scope) {
-		// $scope.$parent.title = "This is a sample post";
-		// Stub
-	};
 
-	PostController.$inject  = ['$scope'];
-	PostsController.$inject = ['$scope', 'PostsService'];
-
+	// Register controllers...
 	angular.module('HNGBlog.posts').controller({
 		"PostController":  PostController,
 		"PostsController": PostsController,

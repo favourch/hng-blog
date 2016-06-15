@@ -2,15 +2,17 @@
 	'use strict';
 	var BaseController;
 
-	BaseController = function ($scope) {
-		$scope.title = 'Developer Blog';
-	};
+	/**
+	 * Mother of all controllers.
+	 *
+	 * @param  {Object} $scope
+	 * @return {void}
+	 */
+	BaseController = ['$scope', function ($scope) {
+		$scope.title = 'Developer Blog - HNG.tech';
+		$scope.headerImage = '/assets/img/header.jpg';
+	}];
 
-	// Injecting dependencies...
-	BaseController.$inject = ['$scope'];
-
-	// Registering controller...
-	angular
-		.module('HNGBlog.shared')
-		.controller('BaseController', BaseController);
+	// Register...
+	angular.module('HNGBlog.shared').controller('BaseController', BaseController);
 }());
