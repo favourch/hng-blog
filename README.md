@@ -20,3 +20,4 @@ The developers that were involved in the development of this blog.
 - [Usman Irale](http://usman.com.ng) - Developer at Hotels.ng
 - Toluwanimi Ajewole - Front-end Developer at Hotels.ng
 - [Jonathan Itakpe](http://jonathanitakpe.xyz/) - Front-end Developer at Hotels.ng
+- [Lynda Chiwetelu](http://lynda.chiwetelu.com/) - Developer at Hotels.ng
