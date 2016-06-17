@@ -18,7 +18,7 @@
 	 * @param  {Object} $urlRouterProvider
 	 * @return {void}
 	 */
-	var uiRouterConfig = ['$stateProvider', '$urlRouterProvider', '$provide', function ($state, $urlRouter, $provide) {
+	var uiRouterConfig = function ($state, $urlRouter, $provide, $window) {
 
 
 		// -----------------------------------------------------------------------------
@@ -28,7 +28,7 @@
 		$provide.decorator('$uiViewScroll', function($delegate) {
 			return function(uiViewElement) {
 				if ($(uiViewElement).hasClass('main-ui-view')) { 
-					window.scrollTo(0, 0); 
+					$window.scrollTo(0, 0); 
 				}
 			};
 		});
@@ -77,7 +77,7 @@
 		// -----------------------------------------------------------------------------
 		// Routes definition
 		//
-		// #todo Use `controller as` syntax to avoid scope soup.
+		// @todo Use `controller as` syntax to avoid scope soup.
 		// @see http://www.technofattie.com/2014/03/21/five-guidelines-for-avoiding-scope-soup-in-angular.html
 		// -----------------------------------------------------------------------------
 
@@ -93,7 +93,8 @@
 				templateUrl: "templates/post.html",
 				resolve: { post: postResolver }
 			});
-	}];
+	};
+	uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$provide', '$window'];
 
 
 	/**
