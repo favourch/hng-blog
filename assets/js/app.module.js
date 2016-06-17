@@ -25,11 +25,13 @@
 		// This fixes the issue with `ui-router` not scrolling to the top of views.
 		// -----------------------------------------------------------------------------
 
-	    $provide.decorator('$uiViewScroll', function($delegate) {
-	      return function(uiViewElement) {
-	      	if ($(uiViewElement).hasClass('main-ui-view')) { window.scrollTo(0, 0); }
-	      };
-	    });
+		$provide.decorator('$uiViewScroll', function($delegate) {
+			return function(uiViewElement) {
+				if ($(uiViewElement).hasClass('main-ui-view')) { 
+					window.scrollTo(0, 0); 
+				}
+			};
+		});
 
 
 		/**
