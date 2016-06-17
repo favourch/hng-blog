@@ -3,8 +3,9 @@
 
 	var app = angular.module('HNGBlog', [
 		'ui.router',
+		'hc.marked',
 		'HNGBlog.shared',
-		'HNGBlog.posts'
+		'HNGBlog.posts',
 	]);
 
 
