@@ -10,7 +10,7 @@
 	 * @return {void}
 	 */
 	PostController = ['$scope', 'post', function ($scope, post) {
-		$scope.post = post;
+		$scope.post          = post;
 		$scope.$parent.post  = post;
 	}];
 
@@ -22,7 +22,7 @@
 	 * @return {void}
 	 */
 	PostsController = ['$scope', 'PostsService', function ($scope, Posts) {
-		$scope.posts = false;
+		$scope.posts        = false;
 		$scope.$parent.post = false;
 
 		Posts.paginated(function (data) {
@@ -36,5 +36,4 @@
 		"PostController":  PostController,
 		"PostsController": PostsController,
 	});
-
 }());

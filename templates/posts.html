@@ -15,10 +15,11 @@
 			    <a ui-sref="post({ id: post.id, slug: post.slug })">
 			        <h2 class="post-title">{{::post.title}}</h2>
 			    </a>
-			    <p class="post-meta">Posted by {{::post.author}} on {{::post.created_at}}</p>
+			    <p class="post-meta">Posted by {{::post.author}} about <span class="datetime">{{::post.created_at | relativeDate}}</span></p>
+			    <p class="post-excerpt">{{post.excerpt}}&hellip;</p>
 			</div>
 
-			<hr >
+			<!--hr -->
 
 		</div>
 	</div>
