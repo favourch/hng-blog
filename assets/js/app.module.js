@@ -16,6 +16,8 @@
 	 *
 	 * @param  {Object} $stateProvider
 	 * @param  {Object} $urlRouterProvider
+	 * @param  {Object} $provide
+	 * @param  {Object} $window
 	 * @return {void}
 	 */
 	var uiRouterConfig = function ($state, $urlRouter, $provide, $window) {
@@ -104,6 +106,11 @@
 	 * @return {void}
 	 */
 	var hcMarkdownConfig = ['markedProvider', function (markedProvider) {
+
+		// -----------------------------------------------------------------------------
+		// Configure `highlight.js` to work with our Markdown module.
+		// -----------------------------------------------------------------------------
+
 		markedProvider.setOptions({
 			gfm: true,
 			tables: true,
@@ -114,6 +121,11 @@
 			}
 		});
 
+
+		// -----------------------------------------------------------------------------
+		// Force non-internal links in markdown to open in a new browser
+		// -----------------------------------------------------------------------------
+		
 		markedProvider.setRenderer({
 			link: function(href, title, text) {
 				var target = "";
