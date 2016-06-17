@@ -16,20 +16,24 @@
 	 *
 	 * @param  {Object} $stateProvider
 	 * @param  {Object} $urlRouterProvider
+	 * @param  {Object} $provide
+	 * @param  {Object} $window
 	 * @return {void}
 	 */
-	var uiRouterConfig = ['$stateProvider', '$urlRouterProvider', '$provide', function ($state, $urlRouter, $provide) {
+	var uiRouterConfig = function ($state, $urlRouter, $provide, $window) {
 
 
 		// -----------------------------------------------------------------------------
 		// This fixes the issue with `ui-router` not scrolling to the top of views.
 		// -----------------------------------------------------------------------------
 
-	    $provide.decorator('$uiViewScroll', function($delegate) {
-	      return function(uiViewElement) {
-	      	if ($(uiViewElement).hasClass('main-ui-view')) { window.scrollTo(0, 0); }
-	      };
-	    });
+		$provide.decorator('$uiViewScroll', function($delegate) {
+			return function(uiViewElement) {
+				if ($(uiViewElement).hasClass('main-ui-view')) {
+					$window.scrollTo(0, 0);
+				}
+			};
+		});
 
 
 		/**
@@ -75,7 +79,7 @@
 		// -----------------------------------------------------------------------------
 		// Routes definition
 		//
-		// #todo Use `controller as` syntax to avoid scope soup.
+		// @todo Use `controller as` syntax to avoid scope soup.
 		// @see http://www.technofattie.com/2014/03/21/five-guidelines-for-avoiding-scope-soup-in-angular.html
 		// -----------------------------------------------------------------------------
 
@@ -91,7 +95,8 @@
 				templateUrl: "templates/post.html",
 				resolve: { post: postResolver }
 			});
-	}];
+	};
+	uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$provide', '$window'];
 
 
 	/**
@@ -101,6 +106,11 @@
 	 * @return {void}
 	 */
 	var hcMarkdownConfig = ['markedProvider', function (markedProvider) {
+
+		// -----------------------------------------------------------------------------
+		// Configure `highlight.js` to work with our Markdown module.
+		// -----------------------------------------------------------------------------
+
 		markedProvider.setOptions({
 			gfm: true,
 			tables: true,
@@ -110,6 +120,11 @@
 					: hljs.highlightAuto(code).value;
 			}
 		});
+
+
+		// -----------------------------------------------------------------------------
+		// Force non-internal links in markdown to open in a new browser
+		// -----------------------------------------------------------------------------
 
 		markedProvider.setRenderer({
 			link: function(href, title, text) {
