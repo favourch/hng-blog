@@ -123,6 +123,22 @@
 	}];
 
 
-	// Attach configuration...
-	app.config(uiRouterConfig).config(hcMarkdownConfig);
+	/**
+	 * Firebase configuration.
+	 *
+	 * @return {void}
+	 */
+	var firebaseConfig = function () {
+		var config = {
+			apiKey: "AIzaSyB15J-lep7zwYEvFPQyfxnDD6N9J6kaQCo",
+			authDomain: "hngtechblog.firebaseapp.com",
+			databaseURL: "https://hngtechblog.firebaseio.com",
+			storageBucket: "",
+		};
+
+		firebase.initializeApp(config);
+	};
+
+	// Attach configurations...
+	app.config(uiRouterConfig).config(firebaseConfig).config(hcMarkdownConfig);
 }());
