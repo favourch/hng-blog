@@ -17,10 +17,9 @@
 	 * @param  {Object} $stateProvider
 	 * @param  {Object} $urlRouterProvider
 	 * @param  {Object} $provide
-	 * @param  {Object} $window
 	 * @return {void}
 	 */
-	var uiRouterConfig = function ($state, $urlRouter, $provide, $window) {
+	var uiRouterConfig = function ($state, $urlRouter, $provide) {
 
 
 		// -----------------------------------------------------------------------------
@@ -30,7 +29,7 @@
 		$provide.decorator('$uiViewScroll', function($delegate) {
 			return function(uiViewElement) {
 				if ($(uiViewElement).hasClass('main-ui-view')) {
-					$window.scrollTo(0, 0);
+					window.scrollTo(0, 0);
 				}
 			};
 		});
@@ -96,7 +95,7 @@
 				resolve: { post: postResolver }
 			});
 	};
-	uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$provide', '$window'];
+	uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$provide'];
 
 
 	/**
