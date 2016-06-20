@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="site-heading" ng-if="!post">
-                <h1>HNG.tech</h1>
+                <h1>{{CONFIG.siteName}}</h1>
                 <hr class="small">
-                <span class="subheading">Development at Hotels.ng</span>
+                <span class="subheading">{{CONFIG.siteDescription}}</span>
             </div>
             <div class="post-heading" ng-if="post">
-                <h1>{{post.title}}</h1>
-                <span class="meta">Posted by {{post.author}} about {{post.created_at | relativeDate}}</span>
+                <h1>{{::post.title}}</h1>
+                <span class="meta">Posted by {{::post.author}} about {{::post.createdAt | relativeDate}}</span>
             </div>
         </div>
     </div>

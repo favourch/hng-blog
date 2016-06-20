@@ -1,42 +1,93 @@
-(function () {
+(function(CONFIG){
 	'use strict';
-	var PostsService, ServiceMethods = {};
+	var PostsService,
+		PostsServiceMethods = {};
 
-	PostsService = function ($http) {
-		var offset = 0,
-			limit  = 10;
+	/**
+	 * PostsService
+	 *
+	 * Handles all calls to the API and returns the response from the repository.
+	 *
+	 * @param {Object} $q
+	 * @param {Object} repository
+	 */
+	PostsService = ['$q', CONFIG.repository, function ($q, repository) {
+		var offset       = 0,
+			resultsLimit = 10,
+			isLastPage   = false;
+
 
 		/**
-		 * Get a single post from the API.
+		 * Get a single post using the slug.
 		 *
-		 * @param  {int} id
-		 * @param  {Function} callback
-		 * @param  {Function} onError
-		 * @return {void}
+		 * @param  {String} slug
+		 * @return {Object}      Angular Promise
 		 */
-		ServiceMethods.get = function (id, callback, onError) {
-			$http.get('/assets/data/post.json').then(callback, onError);
+		PostsServiceMethods.get = function (slug) {
+			var defer, onSuccess, onFailure;
+
+			defer = $q.defer();
+
+			// Failed!
+			onFailure = function (data) {
+				defer.reject(data);
+			};
+
+			// Succeeded!
+			onSuccess = function (data) {
+				defer.resolve(data);
+			};
+
+			// Call the repository...
+			repository["posts"].get(slug).then(onSuccess, onFailure);
+
+			return defer.promise;
 		};
+
 
 		/**
-		 * Get posts from the API.
+		 * Get Paginated Result For Posts.
 		 *
-		 * @param  {Function} callback
-		 * @return {void}
+		 * @param  {Integer} limit
+		 * @return {Object}        Angular Promise
 		 */
-		ServiceMethods.paginated = function (callback) {
-			$http.get('/assets/data/posts.json').then(function (response) {
-				offset = offset + limit;
-				callback(response.data);
-			});
+		PostsServiceMethods.paginated = function (limit) {
+			var defer, onSuccess, onFailure;
+
+			defer = $q.defer();
+			limit = limit > 0 ? limit : resultsLimit;
+
+			/**
+			 * Callback on failure.
+			 *
+			 * @param  {Object} data
+			 * @return {void}
+			 */
+			onFailure = function (data) {
+				defer.reject(data);
+			};
+
+			/**
+			 * Callback on success.
+			 *
+			 * @param  {Object} data
+			 * @return {void}
+			 */
+			onSuccess = function (data) {
+				offset     = offset + limit;
+				isLastPage = data.length < limit;
+
+				defer.resolve(data);
+			};
+
+			// Call the paginate on the post repository...
+			repository["posts"].paginated(offset, limit).then(onSuccess, onFailure);
+
+			return defer.promise;
 		};
 
-		return ServiceMethods;
-	};
+		return PostsServiceMethods;
+	}];
 
-	// Dependencies...
-	PostsService.$inject = ['$http'];
-
-	// Register...
 	angular.module('HNGBlog.posts').factory('PostsService', PostsService);
-}());
+}(window.hngBlogConfig));

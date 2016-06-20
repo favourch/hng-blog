@@ -1,4 +1,4 @@
-(function () {
+(function (CONFIG) {
 	'use strict';
 	var BaseController;
 
@@ -9,10 +9,11 @@
 	 * @return {void}
 	 */
 	BaseController = ['$scope', function ($scope) {
-		$scope.title = 'Developer Blog - HNG.tech';
-		$scope.headerImage = '/assets/img/header.jpg';
+		$scope.CONFIG      = CONFIG;
+		$scope.headerImage = CONFIG.defaultHeaderImage;
+		$scope.title       = 'Developer Blog - ' + CONFIG.siteName;
 	}];
 
 	// Register...
 	angular.module('HNGBlog.shared').controller('BaseController', BaseController);
-}());
+}(window.hngBlogConfig));

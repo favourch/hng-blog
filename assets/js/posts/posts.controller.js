@@ -25,7 +25,7 @@
 		$scope.posts        = false;
 		$scope.$parent.post = false;
 
-		Posts.paginated(function (data) {
+		Posts.paginated().then(function (data) {
 			$scope.posts = data;
 		});
 	}];

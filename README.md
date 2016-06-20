@@ -7,11 +7,22 @@ Since the blog is always in active development, this will be updated as time goe
 
 - NPM
 - Bower & Gulp
-- AngularJS Knowledge
+- A little AngularJS Knowledge
+
+
+### Installation
+
+
+### Custom Repository
+
+Repositories power the blog. By default, the app uses a [Firebase](https://firebase.google.com) repository, which means you need to set up and configure firebase to work with the application.
+
+#### Creating your own repository.
+@TODO
 
 
 ### Developers
-The developers that were involved in the development of this blog.
+The developers that were involved in the development of this app.
 
 - [Neo Ighodaro](https://www.neoighodaro.com) - Software Developer at Hotels.ng
 - Ibiyemi Adewakun - Software Developer at Hotels.ng
